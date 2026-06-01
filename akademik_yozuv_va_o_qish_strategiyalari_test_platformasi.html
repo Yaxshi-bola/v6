@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="uz" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Writing & Reading Strategies — Interactive Test Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        slate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
+        }
+        .dark body {
+            background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #030712 100%);
+        }
+        /* Custom scrollbar matching premium metallic style */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(148, 163, 184, 0.3);
+            border-radius: 20px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(71, 85, 105, 0.5);
+        }
+        
+        /* Discrete repeating diagonal watermark */
+        .watermark-bg {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'><text fill='rgba(100, 116, 139, 0.02)' font-size='10' font-family='sans-serif' x='20' y='120' transform='rotate(-30 20 120)'>@yomonboIa | @yovvoyiroq</text></svg>");
+        }
+        .dark .watermark-bg {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='250' height='250' viewBox='0 0 250 250'><text fill='rgba(255, 255, 255, 0.015)' font-size='10' font-family='sans-serif' x='20' y='120' transform='rotate(-30 20 120)'>@yomonboIa | @yovvoyiroq</text></svg>");
+        }
+
+        /* Glassmorphism Styles (Frosted High-Transparency iOS 26 / HyperOS 3 style) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.04);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* Shining Glass Effect Keyframes */
+        @keyframes sweep {
+            0% { left: -150%; }
+            50% { left: 150%; }
+            100% { left: 150%; }
+        }
+        .shining-glass {
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.04);
+        }
+        .dark .shining-glass {
+            background: rgba(15, 23, 42, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.3);
+        }
+        .shining-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.75) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-25deg);
+            animation: sweep 3.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-full flex flex-col watermark-bg transition-colors duration-500 overflow-x-hidden text-slate-800">
+
+    <!-- TOP HEADER NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/40 dark:bg-slate-950/30 backdrop-blur-md border-b border-white/50 dark:border-slate-900/40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/75 dark:bg-slate-900/50 rounded-2xl flex items-center justify-center border border-white/60 dark:border-slate-800 text-slate-700 dark:text-slate-300 shadow-sm">
+                    <i class="fa-solid fa-graduation-cap text-lg text-indigo-500 animate-pulse"></i>
+                </div>
+                <div>
+                    <h1 class="text-xs sm:text-sm md:text-base font-black tracking-tight text-slate-800 dark:text-white leading-tight">Academic Writing &amp; Reading</h1>
+                    <p class="text-[9px] sm:text-[10px] font-bold text-slate-500 dark:text-slate-400">Interaktiv Test Platformasi • 80 ta Savol</p>
+                </div>
+            </div>
+
+            <!-- Premium Navigation Actions -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Glowing Telegram Channel Link button with Shining Glass Effect -->
+                <a href="https://t.me/yovvoyiroq" target="_blank" class="shining-glass inline-flex items-center gap-1.5 px-3 py-2 text-slate-800 dark:text-white rounded-2xl text-[10px] sm:text-xs font-extrabold transition-all duration-200 active:scale-95">
+                    <i class="fa-brands fa-telegram text-sm text-sky-500"></i>
+                    <span>Kanal: <span class="text-indigo-600 dark:text-indigo-400">@yovvoyiroq</span></span>
+                </a>
+
+                <!-- Theme Toggle -->
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center bg-white/50 dark:bg-slate-900/40 border border-white/40 dark:border-slate-800/40 hover:bg-white/70 dark:hover:bg-slate-800/60 rounded-2xl text-slate-600 dark:text-slate-300 transition-all duration-200 active:scale-90">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- FLOATING CORNER CONTACT BADGE -->
+    <div class="fixed bottom-4 right-4 z-50 opacity-80 hover:opacity-100 transition-all duration-200">
+        <a href="https://t.me/yomonboIa" target="_blank" class="glass-panel px-4 py-2.5 rounded-full text-[11px] font-extrabold text-slate-700 dark:text-slate-300 flex items-center gap-2 shadow-lg border border-white/45 hover:scale-105 transition-all">
+            <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+            <span>Aloqa: @yomonboIa</span>
+        </a>
+    </div>
+
+    <!-- MAIN APP WRAPPER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-6 relative">
+
+        <!-- LEFT SIDEBAR -->
+        <section class="w-full lg:w-80 flex flex-col gap-5 shrink-0">
+            
+            <!-- PROGRESS & STATISTICS -->
+            <div class="glass-panel rounded-3xl p-5 transition-all duration-300">
+                <h2 class="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3.5 flex items-center justify-between">
+                    <span>O'zlashtirish tahlili</span>
+                    <i class="fa-solid fa-chart-line text-slate-400"></i>
+                </h2>
+                
+                <div class="grid grid-cols-2 gap-3 mb-4">
+                    <div class="bg-emerald-500/5 dark:bg-emerald-500/10 p-3 rounded-2xl border border-emerald-500/10 dark:border-emerald-500/20 text-center">
+                        <p class="text-[9px] text-emerald-600 dark:text-emerald-400 font-extrabold uppercase">To'g'ri</p>
+                        <p id="correctCountText" class="text-xl font-black text-emerald-600 dark:text-emerald-400">0</p>
+                    </div>
+                    <div class="bg-rose-500/5 dark:bg-rose-500/10 p-3 rounded-2xl border border-rose-500/10 dark:border-rose-500/20 text-center">
+                        <p class="text-[9px] text-rose-600 dark:text-rose-400 font-extrabold uppercase">Noto'g'ri</p>
+                        <p id="wrongCountText" class="text-xl font-black text-rose-600 dark:text-rose-400">0</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div>
+                    <div class="flex justify-between text-xs font-extrabold text-slate-600 dark:text-slate-300 mb-1.5">
+                        <span>O'zlashtirish darajasi:</span>
+                        <span id="progressBarPercentage" class="font-black text-indigo-600 dark:text-indigo-400">0%</span>
+                    </div>
+                    <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden border border-white/40">
+                        <div id="progressBarFill" class="h-full bg-slate-700 dark:bg-slate-200 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-slate-500 dark:text-slate-400 font-bold mt-2.5">
+                        <span id="answeredRatioText">Bajarildi: 0 / 80</span>
+                        <span id="bookmarkCountText">Saqlanganlar: 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTROLS & CONFIGURATION -->
+            <div class="glass-panel rounded-3xl p-5 transition-all duration-300 flex flex-col gap-4">
+                <h2 class="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                    <span>Sozlamalar</span>
+                    <i class="fa-solid fa-sliders text-slate-400"></i>
+                </h2>
+
+                <!-- Mode Switcher -->
+                <div class="flex bg-slate-200/50 dark:bg-slate-900/50 p-1 rounded-2xl border border-white/20 dark:border-slate-850">
+                    <button id="modeStudyBtn" onclick="changeQuizMode('study')" class="flex-1 py-2 text-xs font-black rounded-xl transition-all duration-300 bg-white dark:bg-slate-800 text-slate-800 dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+                        O'rganish
+                    </button>
+                    <button id="modeExamBtn" onclick="changeQuizMode('exam')" class="flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400">
+                        Imtihon
+                    </button>
+                </div>
+
+                <!-- Exam Timer -->
+                <div id="examTimerContainer" class="hidden">
+                    <div class="bg-rose-500/10 dark:bg-rose-500/15 border border-rose-500/20 rounded-2xl p-3 flex items-center justify-between text-rose-700 dark:text-rose-400">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-hourglass-half animate-spin text-xs"></i>
+                            <span class="text-xs font-black uppercase">Qolgan vaqt:</span>
+                        </div>
+                        <span id="examTimerText" class="font-mono text-sm font-black">60:00</span>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div>
+                    <label class="block text-[9px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Mavzular filtri:</label>
+                    <select id="categoryFilter" onchange="filterQuestions()" class="w-full bg-white/50 dark:bg-slate-900/40 border border-white/35 dark:border-slate-800/40 rounded-xl p-2.5 text-xs font-extrabold focus:outline-none focus:ring-1 focus:ring-indigo-400 text-slate-700 dark:text-slate-300">
+                        <option value="all">Barcha mavzular (80 ta savol)</option>
+                        <option value="formal_letters">Formal &amp; Informal Letters</option>
+                        <option value="compare_contrast">Compare &amp; Contrast Essays</option>
+                        <option value="reading_strategies">Reading Strategies &amp; Techniques</option>
+                        <option value="bookmarked">Saqlangan qiyin savollar (★)</option>
+                    </select>
+                </div>
+
+                <!-- Search Input -->
+                <div>
+                    <label class="block text-[9px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">Savollardan izlash:</label>
+                    <div class="relative">
+                        <input id="searchInput" oninput="filterQuestions()" type="text" placeholder="Kalit so'zni yozing..." class="w-full bg-white/50 dark:bg-slate-900/40 border border-white/35 dark:border-slate-800/40 rounded-xl pl-9 pr-4 py-2.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-indigo-400 text-slate-700 dark:text-slate-300">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-[11px] text-slate-400"></i>
+                    </div>
+                </div>
+
+                <!-- Reset and Shuffle Controls -->
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="shuffleCurrentQuestions()" class="p-2.5 bg-white/40 hover:bg-white/70 dark:bg-slate-900/30 dark:hover:bg-slate-800/40 border border-white/30 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-extrabold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-shuffle text-[10px]"></i>
+                        Aralashtirish
+                    </button>
+                    <button onclick="resetQuizState()" class="p-2.5 bg-rose-500/10 hover:bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/20 font-extrabold text-xs rounded-xl flex items-center justify-center gap-1.5 transition-all">
+                        <i class="fa-solid fa-arrow-rotate-left text-[10px]"></i>
+                        Tozalash
+                    </button>
+                </div>
+            </div>
+
+            <!-- QUESTIONS NAVIGATION MAP -->
+            <div class="glass-panel rounded-3xl p-5 transition-all duration-300 flex flex-col flex-1 min-h-[220px] lg:max-h-[350px]">
+                <h2 class="text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-3 flex items-center justify-between">
+                    <span>Savollar xaritasi</span>
+                    <span id="filteredCountBadge" class="text-[10px] bg-slate-200 dark:bg-slate-800 px-2.5 py-0.5 rounded-full font-black text-slate-600 dark:text-slate-300">80/80</span>
+                </h2>
+                
+                <div class="flex flex-wrap gap-x-2 gap-y-1 text-[9px] text-slate-450 font-bold mb-3">
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 bg-white/50 dark:bg-slate-800 rounded border border-white/45"></span> Ochiq</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 bg-emerald-500 rounded"></span> To'g'ri</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 bg-rose-500 rounded"></span> Xato</span>
+                    <span class="flex items-center gap-1"><span class="w-2 h-2 bg-amber-500 rounded"></span> Yechilgan</span>
+                </div>
+
+                <div id="questionsMapContainer" class="grid grid-cols-5 sm:grid-cols-10 lg:grid-cols-5 gap-1.5 overflow-y-auto flex-1 pr-1 custom-scrollbar">
+                    <!-- Dynamic indicators injected here -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- RIGHT WORKPLACE -->
+        <section class="flex-1 flex flex-col gap-5">
+            
+            <!-- CURRENT QUESTION CONTAINER -->
+            <div class="glass-panel rounded-[32px] p-6 sm:p-8 transition-all duration-300 flex flex-col gap-6 relative overflow-hidden">
+                <div class="absolute inset-0 watermark-bg opacity-[0.05] pointer-events-none"></div>
+
+                <!-- Question Header -->
+                <div class="flex items-center justify-between gap-3 z-10">
+                    <div class="flex items-center gap-2">
+                        <span id="questionIndexBadge" class="px-3.5 py-1 bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 text-xs font-black rounded-full">SAVOL 1</span>
+                        <span id="questionSourceBadge" class="px-3.5 py-1 bg-white/50 dark:bg-slate-900/40 text-slate-600 dark:text-slate-400 text-[10px] font-bold rounded-full max-w-[150px] sm:max-w-[300px] truncate border border-white/20">Mavzu</span>
+                    </div>
+                    <button id="bookmarkBtn" onclick="toggleBookmarkActiveQuestion()" class="w-9 h-9 flex items-center justify-center rounded-xl hover:bg-white/50 dark:hover:bg-slate-800/40 text-slate-400 dark:text-slate-500 transition-all active:scale-90">
+                        <i class="fa-solid fa-star text-base"></i>
+                    </button>
+                </div>
+
+                <!-- Question Text -->
+                <div class="z-10">
+                    <h3 id="questionTextDisplay" class="text-sm sm:text-base font-extrabold text-slate-850 dark:text-white leading-relaxed bg-white/35 dark:bg-slate-900/20 p-4 rounded-2xl border border-white/35 dark:border-slate-800/50">
+                        ...
+                    </h3>
+                </div>
+
+                <!-- Options List Container -->
+                <div id="optionsListContainer" class="flex flex-col gap-3 z-10">
+                    <!-- Dynamic shuffled options will be loaded here -->
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/25 dark:border-slate-850 pt-5 mt-4 z-10">
+                    <div class="flex gap-2 w-full sm:w-auto">
+                        <button id="prevBtn" onclick="navigateToQuestion(-1)" class="flex-1 sm:flex-initial px-5 py-3 border border-white/30 dark:border-slate-800 rounded-xl hover:bg-white/40 dark:hover:bg-slate-800/30 font-extrabold text-xs flex items-center justify-center gap-1.5 transition-all text-slate-700 dark:text-slate-300">
+                            <i class="fa-solid fa-arrow-left"></i> Oldingisi
+                        </button>
+                        <button id="nextBtn" onclick="navigateToQuestion(1)" class="flex-1 sm:flex-initial px-5 py-3 bg-white/60 dark:bg-slate-800/40 hover:bg-white/80 dark:hover:bg-slate-850/55 border border-white/45 dark:border-slate-800 text-slate-850 dark:text-white font-extrabold text-xs flex items-center justify-center gap-1.5 transition-all">
+                            Keyingisi <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Finish Exam Action -->
+                    <div class="w-full sm:w-auto flex justify-end">
+                        <button id="examSubmitBtn" onclick="finishExamPrompt()" class="hidden w-full sm:w-auto px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-black text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md hover:shadow-lg transition-all animate-pulse">
+                            <i class="fa-solid fa-square-check"></i> Imtihonni topshirish
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- EXPLANATION VIEW CARD (Study Mode Only) -->
+            <div id="explanationCard" class="bg-white/30 dark:bg-slate-900/10 border border-white/40 dark:border-slate-800/40 rounded-[32px] p-6 sm:p-8 shadow-sm transition-all duration-300 flex flex-col gap-3">
+                <div class="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                    <i class="fa-solid fa-circle-info text-base text-indigo-500 dark:text-indigo-400"></i>
+                    <h4 class="text-xs font-black uppercase tracking-wider">Tasdiqlangan To'g'ri Javob Izohi</h4>
+                </div>
+                <div class="bg-white/40 dark:bg-slate-900/40 rounded-2xl p-4 border border-white/40 dark:border-slate-800/50">
+                    <p id="explanationTextDisplay" class="text-xs sm:text-sm font-semibold italic text-slate-700 dark:text-slate-300 leading-relaxed">
+                        ...
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RESULT MODAL -->
+    <div id="examResultModal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-panel border border-white/40 dark:border-slate-800 rounded-[32px] max-w-lg w-full overflow-hidden shadow-2xl animate-scale-up">
+            
+            <div class="p-6 sm:p-8 flex flex-col items-center text-center border-b border-white/20 dark:border-slate-850">
+                <div class="w-16 h-16 bg-white/20 dark:bg-slate-900/40 text-slate-850 dark:text-white border border-white/30 dark:border-slate-800 rounded-full flex items-center justify-center text-2xl mb-4">
+                    <i class="fa-solid fa-graduation-cap animate-bounce text-indigo-500 dark:text-indigo-400"></i>
+                </div>
+                <h3 class="text-xl font-black text-slate-900 dark:text-white">Imtihon Yakunlandi!</h3>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 font-bold">Insho va O'qish uslublaridan oraliq attestatsiya tahlili.</p>
+
+                <!-- Numerical Statistics -->
+                <div class="my-6 grid grid-cols-3 gap-3 w-full">
+                    <div class="bg-white/40 dark:bg-slate-900/30 p-3.5 rounded-2xl text-center border border-white/20 dark:border-slate-800">
+                        <p class="text-[9px] font-black text-slate-500 dark:text-slate-400 uppercase">Yechildi</p>
+                        <p id="modalTotalAnswered" class="text-sm font-black text-slate-800 dark:text-white">0</p>
+                    </div>
+                    <div class="bg-emerald-500/10 p-3.5 rounded-2xl text-center border border-emerald-500/20">
+                        <p class="text-[9px] font-black text-emerald-500 uppercase">To'g'ri</p>
+                        <p id="modalCorrect" class="text-sm font-black text-emerald-600 dark:text-emerald-400">0</p>
+                    </div>
+                    <div class="bg-rose-500/10 p-3.5 rounded-2xl text-center border border-rose-500/20">
+                        <p class="text-[9px] font-black text-rose-500 uppercase">Noto'g'ri</p>
+                        <p id="modalIncorrect" class="text-sm font-black text-rose-600 dark:text-rose-400">0</p>
+                    </div>
+                </div>
+
+                <!-- Horizontal Percent Bar -->
+                <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-3 mb-2 overflow-hidden border border-white/20">
+                    <div id="modalPercentBar" class="h-full bg-slate-800 dark:bg-slate-200 rounded-full" style="width: 0%"></div>
+                </div>
+                <p id="modalPercentText" class="text-xs font-black text-slate-800 dark:text-white">Ko'rsatkich: 0%</p>
+                <p id="modalGradeText" class="text-[11px] font-bold text-slate-500 dark:text-slate-400 mt-3 px-2 leading-relaxed"></p>
+            </div>
+
+            <div class="p-4 bg-white/20 dark:bg-slate-950/40 flex flex-col gap-2">
+                <button onclick="reviewExamAnswers()" class="w-full py-3 bg-slate-900 hover:bg-black dark:bg-slate-100 dark:hover:bg-white text-white dark:text-slate-900 font-extrabold text-xs rounded-2xl transition-all shadow-sm">
+                    Xatolarni tahlil qilish (O'rganish rejimida)
+                </button>
+                <button onclick="closeModalAndReset()" class="w-full py-3 bg-white/40 hover:bg-white/60 dark:bg-slate-900/40 dark:hover:bg-slate-800/40 text-slate-800 dark:text-slate-300 border border-white/20 dark:border-slate-800 font-bold text-[10px] rounded-2xl transition-all">
+                    Qayta boshlash
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DATABASE (80 questions on Writing & Reading) -->
+    <script>
+        const rawQuestionsData = [
+            {
+                id: 1,
+                q: "Which paragraph typically contains evidence to support the thesis?",
+                answer: "Body paragraphs",
+                options: ["Introduction", "Body paragraphs", "Conclusion", "Title"],
+                explain: "Inshoning asosiy qismi (Body paragraphs) tezisni tasdiqlovchi dalillar, isbotlar va tushuntirishlarni o'z ichiga oladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 2,
+                q: "Which transition word is most appropriate for presenting a counterargument?",
+                answer: "However",
+                options: ["Furthermore", "However", "Also", "Firstly"],
+                explain: "Muxolif fikrni yoki qarshi dalilni (counterargument) kiritishda 'However' (ammo, biroq) kabi zidlovchi bog'lovchilar ishlatiladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 3,
+                q: "Which of the following is an appropriate salutation for a formal letter?",
+                answer: "Dear Sir or Madam,",
+                options: ["Hey there!", "Dear Sir or Madam,", "Yo!", "Hi buddy!"],
+                explain: "Rasmiy xatlarda qabul qiluvchining ismi noma'lum bo'lsa, 'Dear Sir or Madam,' (Muhtaram janob yoki xonim) deb boshlash eng to'g'ri odob hisoblanadi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 4,
+                q: "What is the main purpose of a complaint letter?",
+                answer: "To express dissatisfaction and request a solution",
+                options: ["To inform a friend about a new product", "To argue about a topic", "To express dissatisfaction and request a solution", "To ask for a refund in casual terms"],
+                explain: "Shikoyat xatining (complaint letter) bosh maqsadi — norozilik bildirish va yuzaga kelgan muammoga yechim so'rashdir.",
+                cat: "formal_letters"
+            },
+            {
+                id: 5,
+                q: "Which part of a formal letter contains the sender's address?",
+                answer: "Heading",
+                options: ["Greeting", "Closing", "Heading", "Body"],
+                explain: "Rasmiy xatning 'Heading' (sarlavha) qismida jo'natuvchining manzili va xat yozilgan sana ko'rsatiladi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 6,
+                q: "Choose the correct closing for a formal letter:",
+                answer: "Yours faithfully,",
+                options: ["Yours faithfully,", "Cheers,", "Bye!", "With love,"],
+                explain: "Rasmiy xat yakunida, agar oluvchining ismi noma'lum bo'lsa, 'Yours faithfully,' (Hurmat bilan) iborasi ishlatiladi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 7,
+                q: "Why is it important to use supporting points in a compare and contrast essay?",
+                answer: "To make comparisons and contrasts clearer and more convincing",
+                options: ["To fill space", "To entertain the reader", "To make comparisons and contrasts clearer and more convincing", "To confuse the opponent"],
+                explain: "Qiyosiy-chog'ishtiruvchi (compare and contrast) insholarda dalillovchi punktlardan foydalanish taqqoslashlarni tushunarli va ishonchli qiladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 8,
+                q: "Which of the following would be best for a job application letter?",
+                answer: "Formal",
+                options: ["Informal", "Formal", "Friendly", "Casual"],
+                explain: "Ishga kirish arizasi (job application letter) har doim rasmiy (Formal) uslubda yoziladi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 9,
+                q: "Which feature is typically NOT found in a formal letter?",
+                answer: "Colloquial language",
+                options: ["Signature", "Colloquial language", "Formal tone", "Structured layout"],
+                explain: "Rasmiy xatlarda so'zlashuv tili va oddiy iboralar (colloquial language) ishlatilmaydi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 10,
+                q: "What is the main difference between formal and informal letters?",
+                answer: "Language and tone",
+                options: ["Paper size", "Font color", "Language and tone", "Number of paragraphs"],
+                explain: "Rasmiy va norasmiy xatlarning eng katta farqi — ishlatiladigan til, ohang (tone) va etiket qoidalaridadir.",
+                cat: "formal_letters"
+            },
+            {
+                id: 11,
+                q: "Which of the following best defines a compare and contrast essay?",
+                answer: "A text that examines similarities and differences between two or more subjects",
+                options: ["A narrative of personal experience", "A poetic expression of emotions", "A text that examines similarities and differences between two or more subjects", "A summary of a book"],
+                explain: "Ikki yoki undan ortiq mavzuning o'xshash va farqli jihatlarini tekshiruvchi insho turi qiyosiy-chog'ishtiruvchi (compare and contrast) insho deyiladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 12,
+                q: "What should be included in the introduction of a compare and contrast essay?",
+                answer: "A thesis statement identifying the subjects being compared and contrasted",
+                options: ["A list of references", "A thesis statement identifying the subjects being compared and contrasted", "Detailed evidence", "Counterarguments"],
+                explain: "Inshoning kirish qismida qiyoslanayotgan ob'ektlarni aniq ko'rsatuvchi tezis (thesis statement) bo'lishi shart.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 13,
+                q: "What is the main function of a thesis statement in a compare and contrast essay?",
+                answer: "To present the main basis for comparison and contrast",
+                options: ["To list facts", "To outline the opposing view", "To present the main basis for comparison and contrast", "To describe characters"],
+                explain: "Tezis bayonoti taqqoslash va solishtirishning asosiy poydevorini va yozuvchining bu boradagi pozitsiyasini ko'rsatib beradi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 14,
+                q: "Which of the following is a valid counterargument technique?",
+                answer: "Acknowledging and refuting opposing arguments",
+                options: ["Ignoring the opposing view", "Refusing to respond", "Acknowledging and refuting opposing arguments", "Copy-pasting opinions"],
+                explain: "Inshoda qarshi fikrni tan olish (acknowledging) va uni mantiqan rad etish (refuting) eng to'g'ri argumentlash texnikasidir.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 15,
+                q: "What should a conclusion do in a compare and contrast essay?",
+                answer: "Summarize the key similarities and differences",
+                options: ["Introduce new evidence", "Summarize the key similarities and differences", "Begin a new argument", "Include a bibliography"],
+                explain: "Xulosa (conclusion) qiyoslanayotgan mavzularning asosiy o'xshash va farqli jihatlarini umumlashtirishi (summarize) kerak.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 16,
+                q: "What organizational pattern is commonly used in a compare and contrast essay?",
+                answer: "Block-by-block or point-by-point organization",
+                options: ["A demand for evidence", "Block-by-block or point-by-point organization", "A summary of opinions", "A reference to literature"],
+                explain: "Qiyosiy insholar tuzilishiga ko'ra 'block-by-block' (blokma-blok) yoki 'point-by-point' (nuqtama-nuqta) tizimida tashkil etiladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 17,
+                q: "Which reading technique is best for finding a specific date in a long text?",
+                answer: "Scanning",
+                options: ["Skimming", "Scanning", "Extensive", "Intensive"],
+                explain: "Matndan aniq sanalar, raqamlar yoki kalit so'zlarni tezda qidirib topish texnikasi 'scanning' deyiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 18,
+                q: "What is the main purpose of skimming?",
+                answer: "To get the general idea of the text",
+                options: ["To understand every detail", "To memorize vocabulary", "To get the general idea of the text", "To count the number of words"],
+                explain: "Skimming — matnning umumiy mazmuni va g'oyasini (the gist/general idea) tezkor tushunib olish uchun o'qishdir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 19,
+                q: "Which reading type is associated with enjoyment and personal development?",
+                answer: "Extensive reading",
+                options: ["Intensive reading", "Scanning", "Extensive reading", "Skimming"],
+                explain: "Zavq olish va til boyligini mustaqil oshirish uchun ko'p hajmdagi kitoblarni o'qish 'extensive reading' (keng qamrovli mutolaa) hisoblanadi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 20,
+                q: "Which strategy would be most helpful for studying for a test?",
+                answer: "Intensive reading",
+                options: ["Extensive reading", "Intensive reading", "Skimming", "Light reading"],
+                explain: "Imtihonga tayyorlanish jarayonida matnni chuqur tahlil qilish, har bir gap mantiqini tushunish — 'intensive reading' (chuqur o'qish)dir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 21,
+                q: "Which reading skill helps locate names or keywords quickly?",
+                answer: "Scanning",
+                options: ["Predicting", "Summarizing", "Skimming", "Scanning"],
+                explain: "Scanning mahorati matndagi kerakli ism-sharif, joy nomlari yoki kalit terminlarni tezkor vizual ilg'ab olishga imkon beradi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 22,
+                q: "When you read a novel for pleasure, what type of reading are you doing?",
+                answer: "Extensive",
+                options: ["Intensive", "Skimming", "Extensive", "Scanning"],
+                explain: "Badiiy roman yoki qissalarni shunchaki zavq olish (pleasure) uchun mutolaa qilish — extensive o'qishning klassik namunasidir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 23,
+                q: "Which reading approach focuses on grammar and vocabulary in detail?",
+                answer: "Intensive",
+                options: ["Skimming", "Intensive", "Extensive", "Scanning"],
+                explain: "Matndagi grammatik qurilmalar va yangi so'zlarni batafsil tahlil qilib o'rganish — intensive o'qish jarayoni sanaladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 24,
+                q: "You want to find out the topic of a newspaper article. Which technique would you use?",
+                answer: "Skimming",
+                options: ["Scanning", "Skimming", "Intensive reading", "Annotating"],
+                explain: "Gazetadagi maqolaning umumiy mavzusini (mavzu nima haqida ekanligini) sarlavha va bosh jumlalar orqali tezda bilib olishda skimming ishlatiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 25,
+                q: "Reading for general understanding is known as:",
+                answer: "Extensive reading",
+                options: ["Intensive reading", "Skimming", "Extensive reading", "Scanning"],
+                explain: "Matnni so'zma-so'z tarjima qilmay, umumiy mazmunni anglash (general understanding) va o'qish ravonligini oshirish extensive o'qish deb nomlanadi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 26,
+                q: "Which of the following best describes intensive reading?",
+                answer: "Reading an article closely to analyze grammar",
+                options: ["Reading a novel in a week", "Reading an article closely to analyze grammar", "Glancing at headlines", "Reading for pleasure"],
+                explain: "Grammatikani tahlil qilish yoki aniq ma'lumotlarni o'rganish uchun qisqa matnni sinchkovlik bilan o'qish — intensive o'qishning yaqqol ifodasidir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 27,
+                q: "What is an appropriate way to start a formal letter when the recipient’s name is unknown?",
+                answer: "Dear Sir or Madam,",
+                options: ["Hello!", "Dear Sir or Madam,", "Sup!", "Hi there!"],
+                explain: "Oluvchining ismi ma'lum bo'lmagan holda xat yozganda 'Dear Sir or Madam,' bilan boshlash eng madaniy va qat'iy talabdir.",
+                cat: "formal_letters"
+            },
+            {
+                id: 28,
+                q: "Which is typically found at the end of a formal letter?",
+                answer: "Yours sincerely,",
+                options: ["\"Catch you later\"", "\"Peace out\"", "\"Yours sincerely,\"", "\"XO\""],
+                explain: "Rasmiy maktublar oxirida odatda 'Yours sincerely,' (Samimiyat ila) yoki 'Yours faithfully,' iboralari ishlatiladi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 29,
+                q: "What part of a letter often includes the date and sender’s address?",
+                answer: "Heading",
+                options: ["Signature", "Salutation", "Heading", "Closing remark"],
+                explain: "Maktubning tepa o'ng yoki chap qismidagi 'Heading' sarlavhasida jo'natuvchi adresi hamda xat yozilgan kun sanasi qayd qilinadi.",
+                cat: "formal_letters"
+            },
+            {
+                id: 30,
+                q: "What kind of tone should be used in a letter of recommendation?",
+                answer: "Formal and professional",
+                options: ["Humorous", "Emotional", "Formal and professional", "Aggressive"],
+                explain: "Tavsiyanomalarda (letter of recommendation) har doim xolis, ob'ektiv va professional-rasmiy (formal and professional) ohang yetakchi bo'lishi lozim.",
+                cat: "formal_letters"
+            },
+            {
+                id: 31,
+                q: "An informal letter would most likely include:",
+                answer: "Slang and casual expressions",
+                options: ["A formal job application", "Detailed technical instructions", "Slang and casual expressions", "Legal statements"],
+                explain: "Norasmiy (do'stona) xatlarda kundalik so'zlashuv iboralari, jargon yoki slanglar qo'llanilishi tabiiy holdir.",
+                cat: "formal_letters"
+            },
+            {
+                id: 32,
+                q: "A thank-you letter sent to a company for a job interview should be:",
+                answer: "Formal",
+                options: ["Formal", "Sarcastic", "Extremely casual", "Unstructured"],
+                explain: "Suhbatdan so'ng tashkilotga yuboriladigan minnatdorchilik xati albatta rasmiy (Formal) va etiket qoidalariga rioya qilingan shaklda bo'lishi kerak.",
+                cat: "formal_letters"
+            },
+            {
+                id: 33,
+                q: "Which of the following helps identify keywords in a text?",
+                answer: "Scanning",
+                options: ["Guessing", "Highlighting", "Reading aloud", "Scanning"],
+                explain: "Scanning strategiyasi matndan kalit so'zlarni (keywords) va zarur ma'lumotlarni qisqa fursatda ilg'ab olishda eng samarali usuldir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 34,
+                q: "Which method is used when you read only the first and last sentence of each paragraph?",
+                answer: "Skimming",
+                options: ["Predicting", "Skimming", "Summarizing", "Annotating"],
+                explain: "Har bir paragrafning faqat bosh va oxirgi gaplarini o'qish orqali matnning g'oyasini aniqlash — skimming usuliga kiradi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 35,
+                q: "What kind of reading is best for building overall language fluency?",
+                answer: "Extensive reading",
+                options: ["Intensive reading", "Reading ads", "Extensive reading", "Skimming"],
+                explain: "Tilda so'z boyligini oshirish va umumiy o'qish ravonligini (fluency) shakllantirishda extensive reading eng mukammal yo'ldir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 36,
+                q: "Which reading strategy is useful for finding a phone number in a directory?",
+                answer: "Scanning",
+                options: ["Predicting", "Extensive reading", "Scanning", "Paraphrasing"],
+                explain: "Ma'lumotnomadan telefon raqami yoki manzillarni qidirishda faqat kerakli belgini vizual izlash — scanning deyiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 37,
+                q: "What is the main goal of intensive reading?",
+                answer: "Understanding detailed meaning",
+                options: ["Getting general ideas", "Enjoying the story", "Understanding detailed meaning", "Increasing reading speed"],
+                explain: "Intensive reading-ning asosiy maqsadi — matnning ichki nozikliklari, qonuniyatlari va batafsil ma'nolarini (detailed meaning) anglashdir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 38,
+                q: "Which of these is a good example of skimming?",
+                answer: "Quickly reading the introduction and headings",
+                options: ["Reading the same paragraph five times", "Quickly reading the introduction and headings", "Memorizing each sentence", "Writing notes for each word"],
+                explain: "Kitobning kirish qismini va sarlavhalarini tezda o'qib chiqish skimming-ga eng to'g'ri misoldir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 39,
+                q: "Scanning is most useful when you are:",
+                answer: "Looking for a specific number or name",
+                options: ["Reading a novel", "Reading poetry", "Looking for a specific number or name", "Learning new vocabulary"],
+                explain: "Scanning faqatgina aniq ismlar, raqamlar yoki faktlarni qidirganda eng yuqori samara beradi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 40,
+                q: "Extensive reading typically involves:",
+                answer: "Novels or magazines",
+                options: ["Dictionaries", "Novels or magazines", "Test preparation", "Grammar drills"],
+                explain: "Sinflardan tashqari yoki bo'sh vaqtlarda qiziqarli jurnallar va romanlarni mutolaa qilish — extensive o'qishga kiradi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 41,
+                q: "Intensive reading is ideal for:",
+                answer: "Understanding difficult academic texts",
+                options: ["Scanning names", "Understanding difficult academic texts", "Reading for fun", "Speed reading"],
+                explain: "Murakkab ilmiy, akademik maqolalarni va darsliklarni tushunishda faqatgina intensive (sinchkov) o'qishdan foydalaniladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 42,
+                q: "A student is reviewing a paragraph to learn new vocabulary. What reading type is this?",
+                answer: "Intensive",
+                options: ["Intensive", "Extensive", "Skimming", "Scanning"],
+                explain: "Paragrafdagi yangi so'zlarni yodlash va o'rganish maqsadida o'qish intensive mutolaaga misol bo'ladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 43,
+                q: "What reading strategy is best when previewing a text for general themes?",
+                answer: "Skimming",
+                options: ["Predicting", "Skimming", "Scanning", "Memorizing"],
+                explain: "Matnni o'qishdan oldin uning umumiy mavzusini va qaysi yo'nalishdaligini (previewing general themes) tushunishda skimming ishlatiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 44,
+                q: "A teacher asks you to analyze each sentence for grammar structures. What are you doing?",
+                answer: "Intensive reading",
+                options: ["Skimming", "Extensive reading", "Intensive reading", "Summarizing"],
+                explain: "Har bir gap tarkibidagi grammatik qoliplarni tahlil qilish (grammar analysis) sof intensive reading jarayonidir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 45,
+                q: "Which reading type helps most with reading speed and comprehension in general?",
+                answer: "Extensive",
+                options: ["Intensive", "Extensive", "Annotating", "Copying"],
+                explain: "Ko'p va doimiy o'qish (extensive reading) insonning o'qish tezligi va umumiy matnni tushunish qobiliyatini tabiiy shakllantiradi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 46,
+                q: "Reading newspaper headlines to get a quick update is an example of:",
+                answer: "Skimming",
+                options: ["Scanning", "Skimming", "Extensive reading", "Critical reading"],
+                explain: "Kunlik yangiliklar sarlavhalarini tezda ko'rib chiqish — skimming strategiyasidir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 47,
+                q: "Which strategy would help you locate a specific flight number on an airport screen?",
+                answer: "Scanning",
+                options: ["Skimming", "Scanning", "Predicting", "Summarizing"],
+                explain: "Aeroport ekranidan faqat o'z parvoz raqamingizni (specific flight number) qidirish scanning strategiyasidir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 48,
+                q: "What makes a good compare and contrast paragraph?",
+                answer: "A clear topic sentence that compares or contrasts specific points",
+                options: ["A series of jokes", "A clear topic sentence that compares or contrasts specific points", "Vague thoughts", "Emotional outbursts"],
+                explain: "Yaxshi qiyosiy paragrafda har doim qiyoslanayotgan jihatlarni aniq belgilab beruvchi 'topic sentence' (mavzu jumlasi) mavjud bo'ladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 49,
+                q: "Which is the most logical order for a compare and contrast essay?",
+                answer: "Introduction → Body → Conclusion",
+                options: ["Evidence → Conclusion → Introduction", "Introduction → Body → Conclusion", "Conclusion → Evidence → Introduction", "Body → Conclusion → Title"],
+                explain: "Har qanday standart inshoning eng mantiqiy tartibi: Kirish (Introduction) -> Asosiy qism (Body) -> Xulosa (Conclusion).",
+                cat: "compare_contrast"
+            },
+            {
+                id: 50,
+                q: "Which transition is commonly used to show contrast?",
+                answer: "However",
+                options: ["Agreement", "However", "Story", "New thesis"],
+                explain: "Fikrlar qarama-qarshiligini (contrast) ko'rsatishda 'However' (ammo, biroq) eng keng tarqalgan zidlovchi bog'lovchidir.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 51,
+                q: "What is the role of transitions like “in contrast” or “on the other hand”?",
+                answer: "To compare or contrast ideas",
+                options: ["To compare or contrast ideas", "To end the essay", "To describe characters", "To summarize everything"],
+                explain: "'In contrast' yoki 'on the other hand' kabi o'tish so'zlari inshodagi qiyoslarni ko'rsatishga va Fikrlar rivojini mustahkamlashga yordam beradi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 52,
+                q: "Why do writers include multiple body paragraphs?",
+                answer: "To organize and develop arguments clearly",
+                options: ["To confuse the reader", "To list as many ideas as possible", "To organize and develop arguments clearly", "To summarize early"],
+                explain: "Bir necha asosiy paragraflar (body paragraphs) muallifning dalillari va g'oyalarini tizimli va tushunarli tashkil qilish uchun kerak bo'ladi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 53,
+                q: "Which part of an essay introduces the topic and states the writer’s position?",
+                answer: "Introduction",
+                options: ["Conclusion", "Supporting paragraph", "Introduction", "Final sentence"],
+                explain: "Inshoning kirish (Introduction) qismi mavzuni tanishtiradi va muallif pozitsiyasini ko'rsatadi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 54,
+                q: "Which phrase signals the conclusion of an essay?",
+                answer: "In conclusion",
+                options: ["Firstly", "For example", "In conclusion", "To illustrate"],
+                explain: "'In conclusion' (xulosa o'rnida) iborasi inshoning xulosa qismi boshlanganligini ko'rsatuvchi signal hisoblanadi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 55,
+                q: "How should a writer present differences in a compare and contrast essay?",
+                answer: "Explain them clearly and objectively",
+                options: ["Ignore them", "Agree with everything", "Explain them clearly and objectively", "Criticize emotionally"],
+                explain: "Qiyosiy inshoda farqli jihatlar har doim xolis va tushunarli tarzda (clearly and objectively) tushuntirilishi zarur.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 56,
+                q: "Which is NOT typical of a strong compare and contrast essay?",
+                answer: "Off-topic personal stories",
+                options: ["Clear thesis", "Supporting details", "Off-topic personal stories", "Organized paragraphs"],
+                explain: "Mavzudan tashqari shaxsiy hikoyalar (off-topic personal stories) akademik inshoning sifatini pasaytiradi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 57,
+                q: "What is a benefit of outlining an essay before writing?",
+                answer: "It helps structure ideas logically",
+                options: ["It’s a waste of time", "It helps structure ideas logically", "It shortens the essay", "It adds emotion"],
+                explain: "Yozishdan oldin insho rejasini (outline) tuzib olish — g'oyalarni mantiqiy va ketma-ket joylashtirishga yordam beradi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 58,
+                q: "What reading strategy is best when you want to gather general ideas from a text quickly?",
+                answer: "Skimming",
+                options: ["Scanning", "Skimming", "Intensive reading", "Extensive reading"],
+                explain: "Matndan tezkorlik bilan umumiy g'oyalarni yig'ib olish uchun eng maqbul strategiya skimming hisoblanadi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 59,
+                q: "Which of the following is NOT a purpose of scanning?",
+                answer: "To read a novel in depth",
+                options: ["To read a novel in depth", "To find a specific date", "To locate a phone number", "To search for key facts"],
+                explain: "Romanni mukammal, chuqur o'qib chiqish scanning emas, balki extensive yoki intensive mutolaa hisoblanadi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 60,
+                q: "Extensive reading helps you:",
+                answer: "Increase reading fluency and vocabulary",
+                options: ["Memorize every word", "Focus on detailed analysis", "Increase reading fluency and vocabulary", "Understand grammar rules"],
+                explain: "Extensive reading tilning umumiy o'qish ravonligini (fluency) va passiv so'z boyligini juda yaxshi o'stiradi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 61,
+                q: "What kind of reading involves analyzing each part of a text in detail?",
+                answer: "Intensive reading",
+                options: ["Intensive reading", "Scanning", "Skimming", "Extensive reading"],
+                explain: "Matnning har bir qismini maydalab, chuqur va batafsil o'rganish (detailed analysis) 'intensive reading' deyiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 62,
+                q: "Which of the following is the best way to prepare for a timed test?",
+                answer: "Focus on main ideas and specific details",
+                options: ["Read every word slowly", "Skim and scan for key information", "Focus on main ideas and specific details", "Reread the questions multiple times"],
+                explain: "Vaqt cheklangan imtihonlarga tayyorlanishda matndagi asosiy g'oyalar (main ideas) va kerakli detallarga e'tibor qaratish eng to'g'ri strategiyadir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 63,
+                q: "When should you use skimming as a reading strategy?",
+                answer: "When you want to get the gist of the text",
+                options: ["To find specific details", "To study for exams", "When you want to get the gist of the text", "When you need to memorize the content"],
+                explain: "Matnning asosiy ma'no mag'zini (the gist) tezda bilib olish kerak bo'lganda skimming strategiyasidan foydalaniladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 64,
+                q: "What reading strategy involves reading in-depth to fully understand complex content?",
+                answer: "Intensive reading",
+                options: ["Intensive reading", "Skimming", "Scanning", "Extensive reading"],
+                explain: "Murakkab yoki qiyin akademik matnlarni to'liq tushunish (fully understand complex content) uchun intensive reading ishlatiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 65,
+                q: "A good strategy for understanding a long article for the main idea is:",
+                answer: "Skimming the headings and first paragraphs",
+                options: ["Scanning for keywords", "Skimming the headings and first paragraphs", "Reading word-for-word", "Memorizing the content"],
+                explain: "Uzun maqolaning umumiy mazmunini tushunish uchun sarlavhalar va paragraflarning birinchi gaplarini skim (tezkor ko'rib chiqish) qilish yetarli hisoblanadi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 66,
+                q: "Which of the following is a suitable example of extensive reading?",
+                answer: "Reading a novel over a few weeks",
+                options: ["Studying for a history exam", "Reading a novel over a few weeks", "Writing a research paper", "Reviewing notes for a lecture"],
+                explain: "Bir necha hafta davomida qiziqish uchun biror bir romanni mutolaa qilib yurish extensive reading-ga misoldir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 67,
+                q: "What is scanning most useful for?",
+                answer: "Locating specific information such as a name or number",
+                options: ["Finding a specific idea", "Comprehending an entire text", "Locating specific information such as a name or number", "Enjoying a story"],
+                explain: "Scanning faqatgina ism, telefon raqami yoki xarita koordinatalari kabi o'ta aniq faktlarni (specific info) tezda topishga mo'ljallangan.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 68,
+                q: "In a compare and contrast essay, what should the conclusion primarily do?",
+                answer: "Summarize the key comparisons and contrasts and restate the thesis",
+                options: ["Introduce new ideas", "Present a counterclaim", "Summarize the key comparisons and contrasts and restate the thesis", "Add personal opinions"],
+                explain: "Taqqoslash insholarida yakuniy xulosa asosiy qiyoslarni umumlashtirib, boshidagi tezisni qayta tasdiqlashi (restate thesis) lozim.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 69,
+                q: "What makes a thesis statement strong in a compare and contrast essay?",
+                answer: "It clearly presents the writer’s position on the issue",
+                options: ["It includes vague ideas", "It avoids taking a stance", "It clearly presents the writer’s position on the issue", "It lists unrelated facts"],
+                explain: "Tezis muallifning ushbu mavzu bo'yicha aniq mantiqiy pozitsiyasini va solishtirish mezonlarini (writer's position) aniq ko'rsatgandagina kuchli hisoblanadi.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 70,
+                q: "Which of the following best describes a rebuttal?",
+                answer: "Refuting the opposing argument with evidence",
+                options: ["Ignoring the opposing argument", "Agreeing with the opposing argument", "Refuting the opposing argument with evidence", "Changing the topic"],
+                explain: "Rebuttal (radhiya) — inshoda qarshi tomon bergan dalillarni aniq dalillar va mantiq asosida rad etish (refuting with evidence) jarayonidir.",
+                cat: "compare_contrast"
+            },
+            {
+                id: 71,
+                q: "Which of the following best describes scanning?",
+                answer: "Reading for specific details, such as dates or names",
+                options: ["Reading to get the main idea quickly", "Reading for specific details, such as dates or names", "Reading for enjoyment", "Reading to understand grammar"],
+                explain: "Raqamlar, ismlar yoki sanalar kabi aniq ma'lumotlarni topish uchun tezkor ko'z yugurtirib chiqish scanning deyiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 72,
+                q: "When you're looking for a key piece of information, such as a phone number, which reading strategy should you use?",
+                answer: "Scanning",
+                options: ["Skimming", "Extensive reading", "Scanning", "Intensive reading"],
+                explain: "Telefon raqami kabi o'ta aniq ma'lumotni (key piece of info) tezkor topishda scanning ishlatiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 73,
+                q: "Which reading strategy is best when you need to understand every word in a short text?",
+                answer: "Intensive reading",
+                options: ["Skimming", "Intensive reading", "Scanning", "Extensive reading"],
+                explain: "Qisqa matndagi har bitta so'z va uning grammatik bog'lanishini (understand every word) tushunishda intensive reading eng to'g'ri usuldir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 74,
+                q: "What is a key feature of extensive reading?",
+                answer: "Reading for pleasure and fluency",
+                options: ["Focus on grammar rules", "Reading in detail and slowly", "Reading for pleasure and fluency", "Finding specific details"],
+                explain: "Keng qamrovli o'qish (extensive) asosan shaxsiy zavqlanish (pleasure) va tildagi ravonlikni (fluency) oshirish maqsadida qo'llaniladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 75,
+                q: "What is the purpose of skimming?",
+                answer: "To get the general idea of a text quickly",
+                options: ["To understand each word", "To memorize information", "To get the general idea of a text quickly", "To find specific details"],
+                explain: "Skimming strategiyasining yagona maqsadi — matnning umumiy mazmunini (general idea) qisqa fursatda tushunib olishdir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 76,
+                q: "When is scanning most useful in a reading task?",
+                answer: "When looking for a specific piece of information",
+                options: ["When looking for a specific piece of information", "When reading for pleasure", "When analyzing an article deeply", "When reading for general understanding"],
+                explain: "O'qish jarayonida scanning faqatgina aniq belgilangan biror ma'lumotni (specific piece of info) qidirganda foydali bo'ladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 77,
+                q: "Which reading strategy would be best if you want to gather a general sense of a long article?",
+                answer: "Skimming",
+                options: ["Scanning", "Skimming", "Extensive reading", "Intensive reading"],
+                explain: "Uzun maqolaning umumiy mazmunini (general sense) tezkor anglashda skimming eng maqbul yo'ldir.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 78,
+                q: "What is the most appropriate reading strategy when you are studying for an exam?",
+                answer: "Intensive reading",
+                options: ["Extensive reading", "Intensive reading", "Skimming", "Scanning"],
+                explain: "Imtihon oldidan mavzuni chuqur o'rganish va tahlil qilish uchun intensive reading ishlatiladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 79,
+                q: "When should you use extensive reading?",
+                answer: "To enjoy reading and improve fluency",
+                options: ["To memorize facts", "To enjoy reading and improve fluency", "To analyze details", "To understand complex grammar"],
+                explain: "Kitob mutolaasidan zavq olish (enjoy reading) va umumiy til ravonligini rivojlantirish (improve fluency) uchun extensive reading-dan foydalaniladi.",
+                cat: "reading_strategies"
+            },
+            {
+                id: 80,
+                q: "What is the key benefit of scanning as a reading strategy?",
+                answer: "Locating specific facts quickly",
+                options: ["Understanding the entire content", "Finding the general theme of the text", "Locating specific facts quickly", "Analyzing grammar and vocabulary"],
+                explain: "Scanning-ning eng asosiy foydasi — kerakli faktlarni o'ta tezkorlik bilan topish (locating specific facts quickly) imkonini berishidir.",
+                cat: "reading_strategies"
+            }
+        ];
+
+        // Global Application States
+        let shuffledQuestions = [];
+        let activeQuestions = [];
+        let currentIndex = 0;
+        let quizMode = 'study'; // 'study' or 'exam'
+        let examTimerInterval = null;
+        let examSecondsLeft = 3600; // 60 minutes
+        let examAnswers = {}; // { qId: selectedOption }
+        let studyResults = {}; // { qId: { correct: boolean, selectedOption: string } }
+        let bookmarkedQuestionIds = [];
+
+        // Safe LocalStorage Retrieval to prevent crashes in sandboxed iframes
+        try {
+            bookmarkedQuestionIds = JSON.parse(localStorage.getItem('bookmarked_lit_questions_new') || '[]');
+        } catch (e) {
+            bookmarkedQuestionIds = [];
+        }
+
+        // Shuffling array
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        // Initialize Options to be random per question (Option Scrambling)
+        function initializeQuestions() {
+            shuffledQuestions = rawQuestionsData.map(q => {
+                const shuffledOpts = shuffleArray([...q.options]);
+                return {
+                    ...q,
+                    options: shuffledOpts
+                };
+            });
+        }
+
+        function loadStateFromLocalStorage() {
+            try {
+                const savedStudyResults = localStorage.getItem('lit_study_results_new');
+                if (savedStudyResults) {
+                    studyResults = JSON.parse(savedStudyResults);
+                }
+            } catch (e) {
+                studyResults = {};
+            }
+        }
+
+        function saveStateToLocalStorage() {
+            try {
+                localStorage.setItem('lit_study_results_new', JSON.stringify(studyResults));
+                localStorage.setItem('bookmarked_lit_questions_new', JSON.stringify(bookmarkedQuestionIds));
+            } catch (e) {
+                // Ignore silently if storage is blocked
+            }
+        }
+
+        // Shuffle current set
+        function shuffleCurrentQuestions() {
+            shuffledQuestions = shuffleArray(shuffledQuestions);
+            shuffledQuestions.forEach(q => {
+                q.options = shuffleArray([...q.options]);
+            });
+            currentIndex = 0;
+            filterQuestions();
+        }
+
+        // Mode Switching
+        function changeQuizMode(mode) {
+            quizMode = mode;
+            const studyBtn = document.getElementById('modeStudyBtn');
+            const examBtn = document.getElementById('modeExamBtn');
+            const timerContainer = document.getElementById('examTimerContainer');
+            const examSubmitBtn = document.getElementById('examSubmitBtn');
+
+            if (mode === 'study') {
+                studyBtn.className = "flex-1 py-2 text-xs font-black rounded-xl transition-all duration-300 bg-white dark:bg-slate-800 text-slate-800 dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]";
+                examBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400";
+                timerContainer.classList.add('hidden');
+                examSubmitBtn.classList.add('hidden');
+                clearInterval(examTimerInterval);
+            } else {
+                examBtn.className = "flex-1 py-2 text-xs font-black rounded-xl transition-all duration-300 bg-white dark:bg-slate-800 text-slate-800 dark:text-white shadow-[0_2px_8px_rgba(0,0,0,0.05)]";
+                studyBtn.className = "flex-1 py-2 text-xs font-bold rounded-xl transition-all duration-300 text-slate-500 dark:text-slate-400";
+                timerContainer.classList.remove('hidden');
+                examSubmitBtn.classList.remove('hidden');
+                startExamTimer();
+            }
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        function startExamTimer() {
+            clearInterval(examTimerInterval);
+            examSecondsLeft = 3600; // Reset
+            updateTimerDisplay();
+            examTimerInterval = setInterval(() => {
+                examSecondsLeft--;
+                updateTimerDisplay();
+                if (examSecondsLeft <= 0) {
+                    clearInterval(examTimerInterval);
+                    finishExam(true);
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(examSecondsLeft / 60);
+            const seconds = examSecondsLeft % 60;
+            document.getElementById('examTimerText').innerText = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Search & Filtering
+        function filterQuestions() {
+            const filterVal = document.getElementById('categoryFilter').value;
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+            activeQuestions = shuffledQuestions.filter(q => {
+                const matchesSearch = q.q.toLowerCase().includes(searchVal) || q.answer.toLowerCase().includes(searchVal);
+                
+                if (filterVal === 'all') {
+                    return matchesSearch;
+                } else if (filterVal === 'bookmarked') {
+                    return bookmarkedQuestionIds.includes(q.id) && matchesSearch;
+                } else {
+                    return q.cat === filterVal && matchesSearch;
+                }
+            });
+
+            document.getElementById('filteredCountBadge').innerText = `${activeQuestions.length} / ${rawQuestionsData.length}`;
+            currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+            updateStats();
+        }
+
+        // Render Test Details
+        function renderQuiz() {
+            const container = document.getElementById('optionsListContainer');
+            const explanationCard = document.getElementById('explanationCard');
+            
+            if (activeQuestions.length === 0) {
+                document.getElementById('questionTextDisplay').innerText = "Belgilangan filtrlar bo'yicha savol topilmadi. Filtrlarni tozalab ko'ring.";
+                document.getElementById('questionIndexBadge').innerText = "SAVOL 0";
+                document.getElementById('questionSourceBadge').innerText = "";
+                container.innerHTML = `
+                    <div class="p-6 text-center text-slate-400 dark:text-slate-500 font-bold border border-dashed border-slate-200 dark:border-slate-800 rounded-2xl bg-white/10">
+                        Natija topilmadi.
+                    </div>`;
+                explanationCard.style.display = 'none';
+                return;
+            }
+
+            const current = activeQuestions[currentIndex];
+            
+            // Set Badge Texts
+            document.getElementById('questionIndexBadge').innerText = `SAVOL ${current.id} (${currentIndex + 1} / ${activeQuestions.length})`;
+            
+            let catName = "Formal & Informal Letters";
+            if (current.cat === 'compare_contrast') catName = "Compare & Contrast Essays";
+            if (current.cat === 'reading_strategies') catName = "Reading Strategies & Techniques";
+            document.getElementById('questionSourceBadge').innerText = catName;
+
+            document.getElementById('questionTextDisplay').innerText = current.q;
+
+            // Bookmark status
+            const bookmarkBtn = document.getElementById('bookmarkBtn');
+            if (bookmarkedQuestionIds.includes(current.id)) {
+                bookmarkBtn.className = "w-9 h-9 flex items-center justify-center rounded-xl hover:bg-white/50 dark:hover:bg-slate-800/40 text-amber-500 transition-all active:scale-90";
+            } else {
+                bookmarkBtn.className = "w-9 h-9 flex items-center justify-center rounded-xl hover:bg-white/50 dark:hover:bg-slate-800/40 text-slate-400 dark:text-slate-500 transition-all active:scale-90";
+            }
+
+            container.innerHTML = "";
+            explanationCard.style.display = 'none';
+
+            const studyAns = studyResults[current.id];
+            const examAns = examAnswers[current.id];
+
+            // Shuffled options renders
+            current.options.forEach((opt, idx) => {
+                let charLabel = 'A';
+                if (idx === 1) charLabel = 'B';
+                if (idx === 2) charLabel = 'C';
+                if (idx === 3) charLabel = 'D';
+                
+                const button = document.createElement('button');
+                button.className = "w-full p-4 rounded-2xl text-left border text-xs sm:text-sm font-bold transition-all flex items-center justify-between gap-3 active:scale-[0.99] glass-card hover:border-slate-400 dark:hover:border-slate-600 text-slate-800 dark:text-slate-200";
+                
+                button.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-8 h-8 rounded-xl bg-slate-200/50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center font-extrabold shrink-0 shadow-sm text-xs border border-white/20">
+                            ${charLabel}
+                        </span>
+                        <span class="leading-snug font-semibold">${opt}</span>
+                    </div>
+                `;
+
+                if (quizMode === 'study') {
+                    if (studyAns) {
+                        button.disabled = true;
+                        if (opt === current.answer) {
+                            button.className = "w-full p-4 rounded-2xl text-left border text-xs sm:text-sm font-bold transition-all flex items-center justify-between gap-3 active:scale-[0.99] border-emerald-500 bg-emerald-500/10 text-emerald-800 dark:text-emerald-300";
+                            button.innerHTML += `<span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] shadow"><i class="fa-solid fa-check"></i></span>`;
+                        } else if (opt === studyAns.selectedOption) {
+                            button.className = "w-full p-4 rounded-2xl text-left border text-xs sm:text-sm font-bold transition-all flex items-center justify-between gap-3 active:scale-[0.99] border-rose-500 bg-rose-500/10 text-rose-800 dark:text-rose-300";
+                            button.innerHTML += `<span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-[10px] shadow"><i class="fa-solid fa-xmark"></i></span>`;
+                        } else {
+                            button.className = "w-full p-4 rounded-2xl text-left border text-xs sm:text-sm font-bold transition-all flex items-center justify-between gap-3 active:scale-[0.99] border-slate-200/20 dark:border-slate-800/20 opacity-50";
+                        }
+                    } else {
+                        button.onclick = () => selectStudyOption(current.id, opt);
+                    }
+                } else {
+                    // Exam view styles
+                    if (examAns === opt) {
+                        button.className = "w-full p-4 rounded-2xl text-left border text-xs sm:text-sm font-bold transition-all flex items-center justify-between gap-3 active:scale-[0.99] border-amber-500 bg-amber-500/10 text-amber-800 dark:text-amber-300 shadow-sm";
+                        button.innerHTML += `<span class="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-[10px] shadow"><i class="fa-solid fa-check-double"></i></span>`;
+                    }
+                    button.onclick = () => selectExamOption(current.id, opt);
+                }
+
+                container.appendChild(button);
+            });
+
+            if (quizMode === 'study' && studyAns) {
+                explanationCard.style.display = 'flex';
+                document.getElementById('explanationTextDisplay').innerText = current.explain;
+            }
+        }
+
+        // Render Map
+        function renderQuestionMap() {
+            const container = document.getElementById('questionsMapContainer');
+            container.innerHTML = "";
+
+            activeQuestions.forEach((q, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "h-9 rounded-xl font-black text-xs transition-all flex items-center justify-center active:scale-90 shadow-sm";
+                btn.innerText = q.id;
+
+                const isCurrent = idx === currentIndex;
+                const studyAns = studyResults[q.id];
+                const examAns = examAnswers[q.id];
+
+                if (isCurrent) {
+                    btn.classList.add('ring-2', 'ring-indigo-400', 'scale-105', 'z-10');
+                }
+
+                if (quizMode === 'study') {
+                    if (studyAns) {
+                        if (studyAns.correct) {
+                            btn.classList.add('bg-emerald-500', 'text-white', 'hover:bg-emerald-600');
+                        } else {
+                            btn.classList.add('bg-rose-500', 'text-white', 'hover:bg-rose-600');
+                        }
+                    } else {
+                        btn.classList.add('bg-white/45', 'dark:bg-slate-800/30', 'text-slate-700', 'dark:text-slate-300', 'hover:bg-white/70', 'dark:hover:bg-slate-700/60');
+                    }
+                } else {
+                    if (examAns) {
+                        btn.classList.add('bg-amber-500', 'text-white', 'hover:bg-amber-600');
+                    } else {
+                        btn.classList.add('bg-white/45', 'dark:bg-slate-800/30', 'text-slate-700', 'dark:text-slate-300', 'hover:bg-white/70', 'dark:hover:bg-slate-700/60');
+                    }
+                }
+
+                btn.onclick = () => {
+                    currentIndex = idx;
+                    renderQuiz();
+                    renderQuestionMap();
+                }
+
+                container.appendChild(btn);
+            });
+        }
+
+        // Selection Action Handler
+        function selectStudyOption(qId, selectedOpt) {
+            const q = rawQuestionsData.find(item => item.id === qId);
+            const isCorrect = q.answer === selectedOpt;
+            studyResults[qId] = {
+                correct: isCorrect,
+                selectedOption: selectedOpt
+            };
+
+            playQuizSound(isCorrect ? 'correct' : 'wrong');
+            saveStateToLocalStorage();
+            updateStats();
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Exam Mode Option Selector
+        function selectExamOption(qId, selectedOpt) {
+            examAnswers[qId] = selectedOpt;
+            updateStats();
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Metrics calculations
+        function updateStats() {
+            let correct = 0;
+            let wrong = 0;
+            let totalAnswered = 0;
+
+            if (quizMode === 'study') {
+                rawQuestionsData.forEach(q => {
+                    if (studyResults[q.id]) {
+                        totalAnswered++;
+                        if (studyResults[q.id].correct) correct++;
+                        else wrong++;
+                    }
+                });
+            } else {
+                rawQuestionsData.forEach(q => {
+                    if (examAnswers[q.id]) {
+                        totalAnswered++;
+                        if (examAnswers[q.id] === q.answer) correct++;
+                        else wrong++;
+                    }
+                });
+            }
+
+            document.getElementById('correctCountText').innerText = correct;
+            document.getElementById('wrongCountText').innerText = wrong;
+            document.getElementById('answeredRatioText').innerText = `Yechildi: ${totalAnswered} / ${rawQuestionsData.length}`;
+            
+            const percent = totalAnswered > 0 ? Math.round((totalAnswered / rawQuestionsData.length) * 100) : 0;
+            document.getElementById('progressBarPercentage').innerText = `${percent}%`;
+            document.getElementById('progressBarFill').style.width = `${percent}%`;
+
+            document.getElementById('bookmarkCountText').innerText = bookmarkedQuestionIds.length;
+        }
+
+        // Prev & Next navigation
+        function navigateToQuestion(direction) {
+            if (activeQuestions.length === 0) return;
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = activeQuestions.length - 1;
+            if (currentIndex >= activeQuestions.length) currentIndex = 0;
+            renderQuiz();
+            renderQuestionMap();
+        }
+
+        // Toggle bookmarks (Yulduzcha)
+        function toggleBookmarkActiveQuestion() {
+            if (activeQuestions.length === 0) return;
+            const current = activeQuestions[currentIndex];
+            const idxInBookmarks = bookmarkedQuestionIds.indexOf(current.id);
+
+            if (idxInBookmarks > -1) {
+                bookmarkedQuestionIds.splice(idxInBookmarks, 1);
+            } else {
+                bookmarkedQuestionIds.push(current.id);
+            }
+
+            saveStateToLocalStorage();
+            renderQuiz();
+            updateStats();
+        }
+
+        // Clears current state (Tozalash)
+        function resetQuizState() {
+            const confirmReset = confirm("Barcha belgilangan test natijalarini tozalab yuborishni xohlaysizmi?");
+            if (confirmReset) {
+                studyResults = {};
+                examAnswers = {};
+                try {
+                    localStorage.removeItem('lit_study_results_new');
+                } catch (e) {}
+                updateStats();
+                renderQuiz();
+                renderQuestionMap();
+            }
+        }
+
+        // Finish exam prompt inside modal dialog
+        function finishExamPrompt() {
+            const answeredCount = Object.keys(examAnswers).length;
+            const confirmed = confirm(`Jami 80 ta savoldan ${answeredCount} tasiga javob berdingiz. Imtihonni topshirishni tasdiqlaysizmi?`);
+            if (confirmed) {
+                finishExam();
+            }
+        }
+
+        function finishExam() {
+            clearInterval(examTimerInterval);
+            
+            let correct = 0;
+            let wrong = 0;
+            rawQuestionsData.forEach(q => {
+                const ans = examAnswers[q.id];
+                if (ans) {
+                    if (ans === q.answer) correct++;
+                    else wrong++;
+                }
+            });
+
+            const total = rawQuestionsData.length;
+            const percent = Math.round((correct / total) * 100);
+
+            // Populate Modal values
+            document.getElementById('modalTotalAnswered').innerText = Object.keys(examAnswers).length;
+            document.getElementById('modalCorrect').innerText = correct;
+            document.getElementById('modalIncorrect').innerText = wrong;
+            document.getElementById('modalPercentText').innerText = `To'g'ri ko'rsatkich: ${percent}%`;
+            document.getElementById('modalPercentBar').style.width = `${percent}%`;
+
+            let gradingText = "";
+            if (percent >= 86) {
+                gradingText = "A'LO! Akademik insho va o'qish strategiyalari normalarini mukammal egallabsiz. Skimming, scanning va qiyosiy insho tuzilishini a'lo darajada o'zlashtirgansiz!";
+            } else if (percent >= 71) {
+                gradingText = "YAXSHI. Savollarning katta qismiga to'g'ri javob berdingiz. Skimming, scanning va insho turlarini yaxshi bilasiz.";
+            } else if (percent >= 55) {
+                gradingText = "QONIQLARLI. O'tish chegarasidan muvaffaqiyatli o'tdingiz. Lekin skimming va intensive reading uslublarini yana bir bor takrorlash tavsiya etiladi.";
+            } else {
+                gradingText = "QONIQARSIZ. Afsuski, yetarli natija qayd etilmadi. O'rganish rejimiga qaytib, tushuntirish va darslik izohlari ustida mukammal qayta ishlang.";
+            }
+            document.getElementById('modalGradeText').innerText = gradingText;
+
+            // Show results modal
+            document.getElementById('examResultModal').classList.remove('hidden');
+        }
+
+        function reviewExamAnswers() {
+            rawQuestionsData.forEach(q => {
+                const ans = examAnswers[q.id];
+                if (ans) {
+                    studyResults[q.id] = {
+                        correct: ans === q.answer,
+                        selectedOption: ans
+                    };
+                }
+            });
+            saveStateToLocalStorage();
+            document.getElementById('examResultModal').classList.add('hidden');
+            changeQuizMode('study');
+        }
+
+        function closeModalAndReset() {
+            document.getElementById('examResultModal').classList.add('hidden');
+            studyResults = {};
+            examAnswers = {};
+            try {
+                localStorage.removeItem('lit_study_results_new');
+            } catch (e) {}
+            changeQuizMode('study');
+        }
+
+        // Theme management - Default to light mode as requested
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                try {
+                    localStorage.setItem('theme', 'light');
+                } catch (e) {}
+            } else {
+                html.classList.add('dark');
+                try {
+                    localStorage.setItem('theme', 'dark');
+                } catch (e) {}
+            }
+            updateThemeToggleButton();
+        }
+
+        function updateThemeToggleButton() {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                icon.className = "fa-solid fa-sun text-amber-400";
+            } else {
+                icon.className = "fa-solid fa-moon text-slate-700";
+            }
+        }
+
+        // Web Audio API Synthesizer (Tovush effektlari)
+        let audioCtx = null;
+        function playQuizSound(type) {
+            try {
+                if (!audioCtx) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) {
+                        audioCtx = new AudioContextClass();
+                    }
+                }
+                if (!audioCtx) return;
+
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.08); // E5
+                    osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.16); // G5
+                    gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+                } else if (type === 'wrong') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(196.00, audioCtx.currentTime); // G3
+                    osc.frequency.setValueAtTime(146.83, audioCtx.currentTime + 0.12); // D3
+                    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.45);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.45);
+                }
+            } catch (err) {
+                // Ignore silently
+            }
+        }
+
+        // Initial Theme Configuration: Defaults always to Light mode
+        try {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        } catch (e) {
+            document.documentElement.classList.remove('dark');
+        }
+
+        window.onload = function() {
+            updateThemeToggleButton();
+            loadStateFromLocalStorage();
+            initializeQuestions();
+            filterQuestions(); 
+        }
+    </script>
+</body>
+</html>
